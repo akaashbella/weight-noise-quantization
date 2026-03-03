@@ -42,6 +42,19 @@ def main() -> int:
     save_config(config, config_path_str)
     log_config(logger, config)
 
+    from src.data import build_dataloaders
+
+    loaders = build_dataloaders(
+        dataset=config["dataset"],
+        data_root="data",
+        img_size=config["img_size"],
+        batch_size=config["batch_size_per_gpu"],
+        num_workers=8,
+        seed=config["seed"],
+    )
+    x, y = next(iter(loaders["train"]))
+    logger.info("Data batch: x %s, y %s", list(x.shape), list(y.shape))
+
     logger.info("TRAIN STUB: would train model here.")
     return 0
 
