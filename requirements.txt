@@ -1,1 +1,2 @@
-# add deps as needed, e.g. torch, numpy
+torch>=2.0.0
+torchvision>=0.15.0
