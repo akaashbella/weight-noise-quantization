@@ -20,7 +20,6 @@ env/
 *.pt
 *.pth
 *.ckpt
-data/
 outputs/
 logs/
 wandb/
