@@ -1,0 +1,2 @@
+dataset,model,train_regime,seed,run_dir
+cifar100,resnet50,clean,0,runs\cifar100\resnet50\clean\seed_0

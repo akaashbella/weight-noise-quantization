@@ -1,0 +1,55 @@
+{
+  "alpha_train": 0.0,
+  "amp_dtype": "bf16",
+  "batch_size_per_gpu": 128,
+  "dataset": "cifar100",
+  "ddp": false,
+  "epochs": 200,
+  "eval": {
+    "alpha_test_grid": [
+      0.0,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ]
+  },
+  "img_size": 224,
+  "lr_schedule": {
+    "name": "cosine",
+    "warmup_epochs": 5
+  },
+  "model": "resnet50",
+  "noise_apply_to": [
+    "conv",
+    "linear"
+  ],
+  "noise_exclude": [
+    "bias",
+    "norm"
+  ],
+  "num_classes": 100,
+  "optimizer": {
+    "lr": 0.05,
+    "momentum": 0.9,
+    "name": "sgd",
+    "nesterov": true,
+    "weight_decay": 0.0005
+  },
+  "ptq": {
+    "enabled": true,
+    "granularity": "per_out_channel",
+    "mode": "weights_only_w8",
+    "quantize_layers": [
+      "conv",
+      "linear"
+    ],
+    "scale_method": "maxabs",
+    "symmetric": true
+  },
+  "seed": 0,
+  "train_regime": "clean"
+}
