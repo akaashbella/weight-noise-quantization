@@ -1,7 +1,7 @@
 {
   "alpha_train": 0.0,
   "amp_dtype": "bf16",
-  "batch_size_per_gpu": 128,
+  "batch_size_per_gpu": 64,
   "dataset": "cifar100",
   "ddp": false,
   "epochs": 1,
@@ -22,7 +22,7 @@
     "name": "cosine",
     "warmup_epochs": 5
   },
-  "model": "resnet50",
+  "model": "efficientnet_b0",
   "noise_apply_to": [
     "conv",
     "linear"
