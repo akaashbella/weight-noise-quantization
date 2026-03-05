@@ -4,13 +4,14 @@
 #SBATCH -c 4
 #SBATCH --mem=16G
 #SBATCH -t 02:00:00
-#SBATCH -o slurm_logs/%x_%j.out
-#SBATCH -e slurm_logs/%x_%j.err
-# If you need an account, uncomment and set:
-##SBATCH -A eecs
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=bellaak@oregonstate.edu
+#SBATCH -o logs/%x_%j.out
+#SBATCH -e logs/%x_%j.err
 
 set -euo pipefail
 
+cd "$SLURM_SUBMIT_DIR"
 source venv/bin/activate
 
 python -m src.exp.aggregate --runs-root runs --out-root results --dataset cifar100

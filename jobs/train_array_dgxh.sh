@@ -6,10 +6,11 @@
 #SBATCH --mem=48G
 #SBATCH -t 2-00:00:00
 #SBATCH --array=0-79%2
-#SBATCH -o slurm_logs/%x_%A_%a.out
-#SBATCH -e slurm_logs/%x_%A_%a.err
-# If you need an account, uncomment and set:
-##SBATCH -A eecs
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=bellaak@oregonstate.edu
+#SBATCH -o logs/%x_%A_%a.out
+#SBATCH -e logs/%x_%A_%a.err
+
 
 set -euo pipefail
 
@@ -26,12 +27,7 @@ model=${MODELS[$(( tmp / 2 ))]}
 # Single-GPU default for batch 128
 LR=0.05
 
-# ---- Environment ----
-# Use ONE method. Examples:
-# module load cuda/12.1
-# module load anaconda
-# conda activate <env>
-# OR venv:
+cd "$SLURM_SUBMIT_DIR"
 source venv/bin/activate
 
 echo "Starting TRAIN: model=${model} regime=${regime} seed=${seed} lr=${LR}"

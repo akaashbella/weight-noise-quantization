@@ -4,12 +4,13 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=32G
-#SBATCH -t 04:00:00
+#SBATCH -t 08:00:00
 #SBATCH --array=0-79%4
-#SBATCH -o slurm_logs/%x_%A_%a.out
-#SBATCH -e slurm_logs/%x_%A_%a.err
-# If you need an account, uncomment and set:
-##SBATCH -A eecs
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=bellaak@oregonstate.edu
+#SBATCH -o logs/%x_%A_%a.out
+#SBATCH -e logs/%x_%A_%a.err
+
 
 set -euo pipefail
 
@@ -25,6 +26,7 @@ model=${MODELS[$(( tmp / 2 ))]}
 
 RUN_DIR="runs/cifar100/${model}/${regime}/seed_${seed}"
 
+cd "$SLURM_SUBMIT_DIR"
 source venv/bin/activate
 
 echo "Starting EVAL_PTQ: ${RUN_DIR}"
