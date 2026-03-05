@@ -4,7 +4,7 @@
 #SBATCH -c 4
 #SBATCH --mem=16G
 #SBATCH -t 02:00:00
-#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-type=ALL,TIMELIMIT_90
 #SBATCH --mail-user=bellaak@oregonstate.edu
 #SBATCH -o logs/%x_%j.out
 #SBATCH -e logs/%x_%j.err
